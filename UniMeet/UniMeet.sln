@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniMeet", "UniMeet.csproj", "{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniMeet.DataContext", "..\UniMeet.DataContext\UniMeet.DataContext.csproj", "{031E80C8-E2E6-477C-8060-2852A3764542}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{031E80C8-E2E6-477C-8060-2852A3764542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{031E80C8-E2E6-477C-8060-2852A3764542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{031E80C8-E2E6-477C-8060-2852A3764542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{031E80C8-E2E6-477C-8060-2852A3764542}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {87CACDF5-D6EA-4BD0-A324-1C1382109738}
+	EndGlobalSection
+EndGlobal

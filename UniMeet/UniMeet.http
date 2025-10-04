@@ -1,0 +1,6 @@
+@UniMeet_HostAddress = http://localhost:5186
+
+GET {{UniMeet_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
