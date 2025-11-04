@@ -1,0 +1,75 @@
+# Version control
+.git/
+.gitignore
+.svn/
+.hg/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.vs/
+*.suo
+
+# Build outputs and development artifacts
+bin/
+obj/
+dist/
+build/
+out/
+tmp/
+temp/
+*.tmp
+
+# Node.js specific
+node_modules/
+npm-debug.log
+yarn-debug.log
+
+# C# and .NET specific
+*.user
+*.vsidx
+*.db
+*.v2
+*.sln
+*.csproj
+*.csproj.user
+
+# Environment and secrets
+.env*
+*.env
+*.pem
+*.key
+*.crt
+config.local.*
+*.local.yml
+.local/
+
+# Documentation and markdown
+*.md
+README*
+docs/
+LICENSE
+UNI MEET.docx
+
+# Test and debug files
+test/
+tests/
+debug/
+*.log
+
+# Temporary and backup files
+*.bak
+*.backup
+
+# Frontend build artifacts
+public/
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+
+# Exclude Docker files from ignore
+!Dockerfile*
+!docker-compose*
