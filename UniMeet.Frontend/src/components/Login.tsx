@@ -1,66 +1,70 @@
 import React, { useState } from 'react';
-import { loginUser } from '../services/apiService'; // Importálás az API modulból
+import { loginUser } from '../services/apiService';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    // Típusok explicit megadása a useState-nek
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
-    const [success, setSuccess] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
-    // Az 'e' esemény típusának megadása (React.FormEvent)
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
-        setSuccess(null);
+        setLoading(true);
 
         try {
-            // Itt történik az összekötés a backenddel
             const response = await loginUser({ username, password });
-            
-            // Sikeres hívás (a 'response.data' típusbiztos)
-            setSuccess(`Sikeres bejelentkezés: ${response.data.username} (ID: ${response.data.id})`);
-            
-            // TODO: Itt kellene elmenteni a felhasználói adatokat 
-            // (pl. Context API-ba vagy más állapotkezelőbe)
-
-        } catch (err: any) { // 'any' használata az axios hibakezelés egyszerűsítéséhez
-            // Hibakezelés
-            const errorMsg = err.response ? err.response.data : 'Kommunikációs hiba a szerverrel';
+            login({ id: response.data.id, username: response.data.username });
+            navigate('/feed');
+        } catch (err: any) {
+            const errorMsg = err.response?.data || 'Kommunikációs hiba a szerverrel';
             setError(`Hiba: ${errorMsg}`);
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
-        <div style={{ padding: '20px', maxWidth: '300px', border: '1px solid #ccc' }}>
-            <form onSubmit={handleSubmit}>
+        <div className="auth-container">
+            <form onSubmit={handleSubmit} className="auth-form">
                 <h2>Bejelentkezés</h2>
-                <div style={{ marginBottom: '10px' }}>
-                    <label>Felhasználónév:</label><br />
+                
+                <div className="form-group">
+                    <label>Felhasználónév:</label>
                     <input 
                         type="text" 
                         value={username} 
                         onChange={(e) => setUsername(e.target.value)} 
                         required
-                        style={{ width: '90%' }}
+                        placeholder="felhasznalonev"
                     />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
-                    <label>Jelszó:</label><br />
+
+                <div className="form-group">
+                    <label>Jelszó:</label>
                     <input 
                         type="password" 
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
                         required
-                        style={{ width: '90%' }}
+                        placeholder="jelszó"
                     />
                 </div>
                 
-                {/* Hiba- és sikerüzenetek */}
-                {error && <p style={{ color: 'red', fontSize: '0.9em' }}>{error}</p>}
-                {success && <p style={{ color: 'green', fontSize: '0.9em' }}>{success}</p>}
+                {error && <p className="error-message">{error}</p>}
 
-                <button type="submit">Bejelentkezés</button>
+                <button type="submit" disabled={loading} className="btn-primary">
+                    {loading ? 'Bejelentkezés...' : 'Bejelentkezés'}
+                </button>
+
+                <p className="auth-switch">
+                    Nincs még fiókod? <a href="/register">Regisztrálj!</a>
+                </p>
             </form>
         </div>
     );

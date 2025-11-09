@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UniMeet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4958fa0ea49074f47fa531e91a85e59e4ccd0656")]
 [assembly: System.Reflection.AssemblyProductAttribute("UniMeet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UniMeet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

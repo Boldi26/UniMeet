@@ -1,13 +1,69 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './components/Login';
+import Register from './components/Register';
+import Feed from './components/Feed';
+import PostDetail from './components/PostDetail';
+
+// Protected Route wrapper
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated } = useAuth();
+  
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  return <>{children}</>;
+}
+
+// Public Route wrapper (redirect to feed if already logged in)
+function PublicRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated } = useAuth();
+  
+  if (isAuthenticated) {
+    return <Navigate to="/feed" replace />;
+  }
+  
+  return <>{children}</>;
+}
 
 function App() {
   return (
-    <div>
-      <h1>UniMeet</h1>
-      <Login />
-      {/* Később itt jön a routing (React Router), 
-          hogy a Login, Register, Feed stb. oldalak között váltsunk */}
-    </div>
+    <AuthProvider>
+      <Router>
+        <div className="app">
+          <Routes>
+            {/* Public routes */}
+            <Route path="/login" element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            } />
+            <Route path="/register" element={
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            } />
+
+            {/* Protected routes */}
+            <Route path="/feed" element={
+              <ProtectedRoute>
+                <Feed />
+              </ProtectedRoute>
+            } />
+            <Route path="/post/:postId" element={
+              <ProtectedRoute>
+                <PostDetail />
+              </ProtectedRoute>
+            } />
+
+            {/* Default redirect */}
+            <Route path="/" element={<Navigate to="/login" replace />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

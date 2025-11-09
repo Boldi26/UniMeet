@@ -1,41 +1,45 @@
 # syntax=docker/dockerfile:1
 
-# Set the .NET version from the csproj (update if needed)
-ARG DOTNET_VERSION=7.0
+# Set the .NET version
+ARG DOTNET_VERSION=9.0
 
 # Build stage
 FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS builder
 WORKDIR /src
 
-# Copy csproj and restore as distinct layers for better caching
-COPY --link UniMeet.csproj ./
-COPY --link UniMeet.DataContext/UniMeet.DataContext.csproj ./UniMeet.DataContext/
-RUN --mount=type=cache,target=/root/.nuget/packages \
-    --mount=type=cache,target=/root/.cache/msbuild \
-    dotnet restore UniMeet.csproj
+# Copy solution and project files
+COPY ../UniMeet.DataContext/UniMeet.DataContext.csproj ./UniMeet.DataContext/
+COPY UniMeet.csproj ./UniMeet/
+COPY UniMeet.sln ./
 
-# Copy the rest of the source code
-COPY --link . .
+# Restore dependencies
+WORKDIR /src/UniMeet
+RUN dotnet restore
 
-# Publish the application
+# Copy all source code
+WORKDIR /src
+COPY ../UniMeet.DataContext/ ./UniMeet.DataContext/
+COPY . ./UniMeet/
+
+# Build and publish
+WORKDIR /src/UniMeet
 RUN dotnet publish UniMeet.csproj -c Release -o /app/publish --no-restore
 
 # Final runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION} AS final
 WORKDIR /app
 
-# Create a non-root user
-RUN addgroup --system unimeet && adduser --system --ingroup unimeet unimeet
-USER unimeet
-
 # Copy published output from build stage
 COPY --from=builder /app/publish .
 
-# Expose port 80 (update if your app uses a different port)
-EXPOSE 80
+# Copy SQL initialization script
+COPY UniMeet.sql /app/UniMeet.sql
+
+# Expose port
+EXPOSE 5186
 
 # Set environment variables for ASP.NET Core
-ENV ASPNETCORE_URLS=http://+:80
+ENV ASPNETCORE_URLS=http://+:5186
 
 # Start the application
 ENTRYPOINT ["dotnet", "UniMeet.dll"]

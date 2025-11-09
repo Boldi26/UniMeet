@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # SQL Server adatbázis
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: unimeet-sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=UniMeet123!
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    networks:
+      - unimeet-network
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P UniMeet123! -Q "SELECT 1"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: ./UniMeet
+      dockerfile: Dockerfile
+    container_name: unimeet-backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5186
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=UniMeetDb;User Id=sa;Password=UniMeet123!;TrustServerCertificate=True;
+    ports:
+      - "5186:5186"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    networks:
+      - unimeet-network
+
+  # Frontend React App
+  frontend:
+    build:
+      context: ./UniMeet.Frontend
+      dockerfile: Dockerfile
+    container_name: unimeet-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - unimeet-network
+    environment:
+      - VITE_API_URL=http://localhost:5186/api
+
+volumes:
+  sqlserver-data:
+
+networks:
+  unimeet-network:
+    driver: bridge
