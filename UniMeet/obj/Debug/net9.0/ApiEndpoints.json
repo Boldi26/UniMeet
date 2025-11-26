@@ -1,8 +1,92 @@
 [
   {
-    "ContainingType": "UniMeet.Controllers.PostsController",
+    "ContainingType": "UniMeet.Controllers.GroupsController",
+    "Method": "CreateGroup",
+    "RelativePath": "api/Groups",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "UniMeet.DataContext.Dtos.CreateGroupDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UniMeet.Controllers.GroupsController",
+    "Method": "GetAllGroups",
+    "RelativePath": "api/Groups",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[UniMeet.DataContext.Dtos.GroupSummaryDto, UniMeet.DataContext, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "UniMeet.Controllers.GroupsController",
+    "Method": "JoinGroup",
+    "RelativePath": "api/Groups/{groupId}/join",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UniMeet.Controllers.GroupsController",
+    "Method": "LeaveGroup",
+    "RelativePath": "api/Groups/{groupId}/leave",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UniMeet.Controllers.PostController",
     "Method": "CreatePost",
-    "RelativePath": "api/Posts",
+    "RelativePath": "api/Post",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -16,9 +100,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "UniMeet.Controllers.PostsController",
+    "ContainingType": "UniMeet.Controllers.PostController",
     "Method": "GetPostDetails",
-    "RelativePath": "api/Posts/{postId}",
+    "RelativePath": "api/Post/{postId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -32,9 +116,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "UniMeet.Controllers.PostsController",
+    "ContainingType": "UniMeet.Controllers.PostController",
     "Method": "DeletePost",
-    "RelativePath": "api/Posts/{postId}",
+    "RelativePath": "api/Post/{postId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -48,9 +132,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "UniMeet.Controllers.PostsController",
+    "ContainingType": "UniMeet.Controllers.PostController",
     "Method": "AddComment",
-    "RelativePath": "api/Posts/{postId}/comments",
+    "RelativePath": "api/Post/{postId}/comments",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -69,9 +153,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "UniMeet.Controllers.PostsController",
+    "ContainingType": "UniMeet.Controllers.PostController",
     "Method": "AddInterest",
-    "RelativePath": "api/Posts/{postId}/interest",
+    "RelativePath": "api/Post/{postId}/interest",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -90,9 +174,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "UniMeet.Controllers.PostsController",
-    "Method": "DeleteInterest",
-    "RelativePath": "api/Posts/{postId}/interest/{userId}",
+    "ContainingType": "UniMeet.Controllers.PostController",
+    "Method": "RemoveInterest",
+    "RelativePath": "api/Post/{postId}/interest/{userId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -111,25 +195,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "UniMeet.Controllers.PostsController",
-    "Method": "GetPostsByDomain",
-    "RelativePath": "api/Posts/by-domain",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "domain",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UniMeet.Controllers.PostsController",
+    "ContainingType": "UniMeet.Controllers.PostController",
     "Method": "DeleteComment",
-    "RelativePath": "api/Posts/comments/{commentId}",
+    "RelativePath": "api/Post/comments/{commentId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -138,6 +206,111 @@
         "Name": "commentId",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UniMeet.Controllers.PostController",
+    "Method": "GetFeed",
+    "RelativePath": "api/Post/feed",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[UniMeet.DataContext.Dtos.PostDetailResponse, UniMeet.DataContext, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "UniMeet.Controllers.ProfileController",
+    "Method": "GetProfile",
+    "RelativePath": "api/Profile/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "currentUserId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UniMeet.Controllers.ProfileController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/Profile/{userId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "UniMeet.DataContext.Dtos.UpdateProfileDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UniMeet.Controllers.ProfileController",
+    "Method": "DeleteProfile",
+    "RelativePath": "api/Profile/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UniMeet.Controllers.ProfileController",
+    "Method": "GetProfileByUsername",
+    "RelativePath": "api/Profile/by-username/{username}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "currentUserId",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

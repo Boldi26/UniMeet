@@ -27,3 +27,18 @@ D:\Unity Projects\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\refint\UniMeet.Da
 D:\Unity Projects\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.pdb
 D:\Unity Projects\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.genruntimeconfig.cache
 D:\Unity Projects\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\ref\UniMeet.DataContext.dll
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\bin\Debug\net9.0\UniMeet.DataContext.deps.json
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\bin\Debug\net9.0\UniMeet.DataContext.runtimeconfig.json
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\bin\Debug\net9.0\UniMeet.DataContext.dll
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\bin\Debug\net9.0\UniMeet.DataContext.pdb
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.csproj.AssemblyReference.cache
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.AssemblyInfoInputs.cache
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.AssemblyInfo.cs
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.csproj.CoreCompileInputs.cache
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.sourcelink.json
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.dll
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\refint\UniMeet.DataContext.dll
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.pdb
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\UniMeet.DataContext.genruntimeconfig.cache
+C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet.DataContext\obj\Debug\net9.0\ref\UniMeet.DataContext.dll

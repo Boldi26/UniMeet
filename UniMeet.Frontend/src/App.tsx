@@ -4,6 +4,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Feed from './components/Feed';
 import PostDetail from './components/PostDetail';
+import Groups from './components/Groups';
+import UserProfile from './components/UserProfile';
 
 // Protected Route wrapper
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -54,6 +56,23 @@ function App() {
             <Route path="/post/:postId" element={
               <ProtectedRoute>
                 <PostDetail />
+              </ProtectedRoute>
+            } />
+            <Route path="/groups" element={
+              <ProtectedRoute>
+                <Groups />
+              </ProtectedRoute>
+            } />
+            {/* Saját profil */}
+            <Route path="/profile" element={
+              <ProtectedRoute>
+                <UserProfile />
+              </ProtectedRoute>
+            } />
+            {/* Más felhasználó profilja */}
+            <Route path="/profile/:username" element={
+              <ProtectedRoute>
+                <UserProfile />
               </ProtectedRoute>
             } />
 

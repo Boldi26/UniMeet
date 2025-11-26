@@ -14,6 +14,7 @@ interface Comment {
     id: number;
     content: string;
     username: string;
+    dateCreated: string;
     replies: Comment[];
 }
 
@@ -21,8 +22,14 @@ interface PostDetail {
     postId: number;
     content: string;
     authorUsername: string;
+    authorImageUrl?: string;
+    imageUrl?: string;
     interestedCount: number;
     commentsCount: number;
+    commentsEnabled: boolean;
+    interestEnabled: boolean;
+    groupName?: string;
+    dateCreated: string;
     comments: Comment[];
 }
 
@@ -73,14 +80,14 @@ function PostDetail() {
 
             setNewComment('');
             setReplyTo(null);
-            loadPost(); // Újratöltjük a post-ot
+            loadPost();
         } catch (err: any) {
             alert('Nem sikerült hozzáadni a kommentet: ' + (err.response?.data || err.message));
         }
     };
 
     const handleToggleInterest = async () => {
-        if (!user || !postId) return;
+        if (!user || !postId || !post?.interestEnabled) return;
 
         try {
             if (isInterested) {
@@ -90,7 +97,7 @@ function PostDetail() {
                 await addInterest(parseInt(postId), { userId: user.id });
                 setIsInterested(true);
             }
-            loadPost(); // Újratöltjük a post-ot
+            loadPost();
         } catch (err: any) {
             alert('Művelet sikertelen: ' + (err.response?.data || err.message));
         }
@@ -123,13 +130,18 @@ function PostDetail() {
             <div key={comment.id} className="comment" style={{ marginLeft: `${level * 20}px` }}>
                 <div className="comment-header">
                     <strong>{comment.username}</strong>
+                    <span style={{ fontSize: '0.8em', color: '#666', marginLeft: '10px' }}>
+                        {new Date(comment.dateCreated).toLocaleString('hu-HU')}
+                    </span>
                     <div className="comment-actions">
-                        <button 
-                            onClick={() => setReplyTo(comment.id)} 
-                            className="btn-link"
-                        >
-                            Válasz
-                        </button>
+                        {post?.commentsEnabled && (
+                            <button 
+                                onClick={() => setReplyTo(comment.id)} 
+                                className="btn-link"
+                            >
+                                Válasz
+                            </button>
+                        )}
                         {user?.username === comment.username && (
                             <button 
                                 onClick={() => handleDeleteComment(comment.id)} 
@@ -158,7 +170,40 @@ function PostDetail() {
 
             <div className="post-detail">
                 <div className="post-header">
-                    <h2>{post.authorUsername}</h2>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        {post.authorImageUrl ? (
+                            <img 
+                                src={post.authorImageUrl} 
+                                alt={post.authorUsername} 
+                                style={{ width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover', cursor: 'pointer' }}
+                                onClick={() => navigate(`/profile/${post.authorUsername}`)}
+                            />
+                        ) : (
+                            <div 
+                                style={{ 
+                                    width: '50px', height: '50px', borderRadius: '50%', 
+                                    backgroundColor: '#646cff', color: 'white', 
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    fontWeight: 'bold', cursor: 'pointer'
+                                }}
+                                onClick={() => navigate(`/profile/${post.authorUsername}`)}
+                            >
+                                {post.authorUsername.charAt(0).toUpperCase()}
+                            </div>
+                        )}
+                        <div>
+                            <h2 
+                                style={{ margin: 0, cursor: 'pointer' }}
+                                onClick={() => navigate(`/profile/${post.authorUsername}`)}
+                            >
+                                {post.authorUsername}
+                            </h2>
+                            {post.groupName && <span style={{ color: '#666' }}>a {post.groupName} csoportban</span>}
+                            <div style={{ fontSize: '0.85em', color: '#666' }}>
+                                {new Date(post.dateCreated).toLocaleString('hu-HU')}
+                            </div>
+                        </div>
+                    </div>
                     {user?.username === post.authorUsername && (
                         <button onClick={handleDeletePost} className="btn-danger">
                             Törlés
@@ -168,45 +213,74 @@ function PostDetail() {
 
                 <div className="post-content">
                     <p>{post.content}</p>
+                    {post.imageUrl && (
+                        <div style={{ marginTop: '15px', textAlign: 'center' }}>
+                            <img 
+                                src={post.imageUrl} 
+                                alt="Post attachment" 
+                                style={{ maxWidth: '100%', maxHeight: '500px', borderRadius: '8px' }} 
+                            />
+                        </div>
+                    )}
                 </div>
 
                 <div className="post-stats">
-                    <button 
-                        onClick={handleToggleInterest} 
-                        className={`btn-interest ${isInterested ? 'active' : ''}`}
-                    >
-                        ⭐ {isInterested ? 'Érdekel' : 'Érdekelne'} ({post.interestedCount})
-                    </button>
+                    {/* Érdeklődés gomb - Csak ha engedélyezve van */}
+                    {post.interestEnabled ? (
+                        <button 
+                            onClick={handleToggleInterest} 
+                            className={`btn-interest ${isInterested ? 'active' : ''}`}
+                        >
+                            ⭐ {isInterested ? 'Érdekel' : 'Érdekelne'} ({post.interestedCount})
+                        </button>
+                    ) : (
+                        <span style={{ color: '#999' }}>🚫 Érdeklődés letiltva ({post.interestedCount})</span>
+                    )}
                     <span>💬 {post.commentsCount} komment</span>
                 </div>
 
                 <div className="comments-section">
                     <h3>Kommentek</h3>
 
-                    <form onSubmit={handleAddComment} className="comment-form">
-                        {replyTo && (
-                            <div className="reply-indicator">
-                                Válasz kommentre #{replyTo}
-                                <button 
-                                    type="button" 
-                                    onClick={() => setReplyTo(null)}
-                                    className="btn-link"
-                                >
-                                    ✕
-                                </button>
-                            </div>
-                        )}
-                        <textarea
-                            value={newComment}
-                            onChange={(e) => setNewComment(e.target.value)}
-                            placeholder="Írj egy kommentet..."
-                            rows={3}
-                            required
-                        />
-                        <button type="submit" className="btn-primary">
-                            Küldés
-                        </button>
-                    </form>
+                    {/* Komment form - Csak ha engedélyezve van */}
+                    {post.commentsEnabled ? (
+                        <form onSubmit={handleAddComment} className="comment-form">
+                            {replyTo && (
+                                <div className="reply-indicator">
+                                    Válasz kommentre #{replyTo}
+                                    <button 
+                                        type="button" 
+                                        onClick={() => setReplyTo(null)}
+                                        className="btn-link"
+                                    >
+                                        ✕
+                                    </button>
+                                </div>
+                            )}
+                            <textarea
+                                value={newComment}
+                                onChange={(e) => setNewComment(e.target.value)}
+                                placeholder="Írj egy kommentet..."
+                                rows={3}
+                                required
+                            />
+                            <button type="submit" className="btn-primary">
+                                Küldés
+                            </button>
+                        </form>
+                    ) : (
+                        <div style={{ 
+                            padding: '15px', 
+                            backgroundColor: '#333', 
+                            borderRadius: '8px', 
+                            marginBottom: '15px',
+                            color: '#888',
+                            textAlign: 'center',
+                            border: '1px solid #444'
+                        }}>
+                            🔒 A kommentelés le van tiltva ennél a bejegyzésnél
+                        </div>
+                    )}
 
                     <div className="comments-list">
                         {post.comments.length === 0 ? (
