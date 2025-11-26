@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-// ⚠️ FONTOS: Cserélje le a portszámot (pl. 7123) a backend portjára!
-// Ezt a backend projekt 'launchSettings.json' fájljában találja.
-const API_URL = 'http://localhost:5186/api'; 
+// ⚠️ FONTOS: Cserélje le a portszámot a backend 'launchSettings.json' HTTPS portjára (pl. 7048)!
+const API_URL = 'https://localhost:7048/api'; 
 
 const apiClient = axios.create({
     baseURL: API_URL,
@@ -11,121 +10,145 @@ const apiClient = axios.create({
     }
 });
 
-// === DTO Interfaces ===
+// Token automatikus csatolása minden kéréshez, ha be van jelentkezve
+apiClient.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
 
-interface LoginDto {
-    username: string;
-    password: string;
-}
+// ============================================
+// Típusdefiníciók (Interfaces)
+// ============================================
 
-interface RegisterDto {
-    email: string;
-    username: string;
-    password: string;
-}
-
-interface UserResponse {
-    id: number;
-    username: string;
-    email?: string;
-}
-
-interface CreatePostDto {
-    userId: number;
-    content: string;
-    commentsEnabled: boolean;
-    interestEnabled: boolean;
-}
-
-interface CreateCommentDto {
+// --- Komment & Érdeklődés DTO-k (Ezek hiányoztak) ---
+export interface CreateCommentDto {
     userId: number;
     content: string;
     parentCommentId?: number;
 }
 
-interface InterestDto {
+export interface InterestDto {
     userId: number;
 }
 
-interface ChangeUsernameDto {
-    username: string;
-}
-
-interface CommentResponse {
-    id: number;
-    content: string;
-    username: string;
-    replies: CommentResponse[];
-}
-
-interface PostDetailResponse {
+// --- Poszt DTO-k ---
+export interface PostDetailResponse {
     postId: number;
     content: string;
     authorUsername: string;
+    authorImageUrl?: string;
+    dateCreated: string;
     interestedCount: number;
     commentsCount: number;
-    comments: CommentResponse[];
+    commentsEnabled: boolean;
+    interestEnabled: boolean;
+    imageUrl?: string;
+    groupName?: string;
+    comments: any[]; // Részletesebb típus is létrehozható
 }
 
-interface PostResponse {
-    id: number;
+export interface CreatePostDto {
     userId: number;
     content: string;
     commentsEnabled: boolean;
     interestEnabled: boolean;
-    dateCreated: string;
+    imageUrl?: string; // Base64
+    groupId?: number;
 }
 
-// === UserController API ===
+// --- Profil DTO-k ---
+export interface UserProfileResponse {
+    id: number;
+    username: string;
+    email: string;
+    profileImageUrl?: string;
+    faculty?: string;
+    major?: string;
+    bio?: string;
+    postsCount: number;
+    isOwnProfile: boolean;
+    dateCreated?: string;
+}
 
-export const loginUser = (loginData: LoginDto) => {
-    return apiClient.post<UserResponse>('/Users/login', loginData);
-};
+export interface UpdateProfileDto {
+    profileImageUrl?: string;
+    faculty?: string;
+    major?: string;
+    bio?: string;
+}
 
-export const registerUser = (registerData: RegisterDto) => {
-    return apiClient.post<UserResponse>('/Users/register', registerData);
-};
+// --- Csoport DTO-k ---
+export interface GroupSummaryDto {
+    id: number;
+    name: string;
+    description?: string;
+    imageUrl?: string;
+    membersCount: number;
+    isMember: boolean;
+    isPrivate: boolean;
+    creatorUserId: number;
+}
 
-export const deleteUser = (userId: number) => {
-    return apiClient.delete(`/Users/${userId}`);
-};
+export interface CreateGroupDto {
+    name: string;
+    description?: string;
+    imageUrl?: string;
+    creatorUserId: number;
+    isPrivate: boolean;
+}
 
-export const changeUsername = (userId: number, data: ChangeUsernameDto) => {
-    return apiClient.put<UserResponse>(`/Users/users/${userId}/username`, data);
-};
+// ============================================
+// API Hívások (Exportok)
+// ============================================
 
-// === PostsController API ===
+// --- Auth ---
+export const loginUser = (data: any) => apiClient.post('/Users/login', data);
+export const registerUser = (data: any) => apiClient.post('/Users/register', data);
 
-export const createPost = (postData: CreatePostDto) => {
-    return apiClient.post<PostResponse>('/Posts', postData);
-};
+// --- Posztok (Alap) ---
+export const createPost = (data: CreatePostDto) => apiClient.post('/Post', data);
+export const getFeed = (userId: number) => apiClient.get<PostDetailResponse[]>(`/Post/feed?userId=${userId}`);
+export const getPostsByDomain = (domain: string) => apiClient.get<number[]>(`/Post/by-domain?domain=${domain}`); // Kompatibilitás
 
-export const getPostDetails = (postId: number) => {
-    return apiClient.get<PostDetailResponse>(`/Posts/${postId}`);
-};
+// --- Poszt Részletek & Interakciók (Ezek hiányoztak a hibák alapján) ---
+export const getPostDetails = (postId: number) => apiClient.get<PostDetailResponse>(`/Post/${postId}`);
 
-export const getPostsByDomain = (domain: string) => {
-    return apiClient.get<number[]>(`/Posts/by-domain?domain=${domain}`);
-};
-
-export const deletePost = (postId: number) => {
-    return apiClient.delete(`/Posts/${postId}`);
-};
+export const deletePost = (postId: number) => apiClient.delete(`/Post/${postId}`);
 
 export const addComment = (postId: number, commentData: CreateCommentDto) => {
-    return apiClient.post(`/Posts/${postId}/comments`, commentData);
+    return apiClient.post(`/Post/${postId}/comments`, commentData);
 };
 
 export const deleteComment = (commentId: number) => {
-    return apiClient.delete(`/Posts/comments/${commentId}`);
+    // Feltételezve, hogy a backend így kezeli a komment törlést
+    return apiClient.delete(`/Post/comments/${commentId}`);
 };
 
 export const addInterest = (postId: number, interestData: InterestDto) => {
-    return apiClient.post(`/Posts/${postId}/interest`, interestData);
+    return apiClient.post(`/Post/${postId}/interest`, interestData);
 };
 
 export const deleteInterest = (postId: number, userId: number) => {
-    return apiClient.delete(`/Posts/${postId}/interest/${userId}`);
+    return apiClient.delete(`/Post/${postId}/interest/${userId}`);
 };
+
+// --- Csoportok ---
+export const getAllGroups = (userId: number) => apiClient.get<GroupSummaryDto[]>(`/Groups?userId=${userId}`);
+export const createGroup = (data: CreateGroupDto) => apiClient.post('/Groups', data);
+export const joinGroup = (groupId: number, userId: number) => apiClient.post(`/Groups/${groupId}/join`, userId); // Int body-ként
+export const leaveGroup = (groupId: number, userId: number) => apiClient.delete(`/Groups/${groupId}/leave?userId=${userId}`);
+
+// --- Profil ---
+export const getProfile = (userId: number, currentUserId: number, username?: string) => {
+    if (username) {
+        return apiClient.get<UserProfileResponse>(`/Profile/by-username/${username}?currentUserId=${currentUserId}`);
+    }
+    return apiClient.get<UserProfileResponse>(`/Profile/${userId}?currentUserId=${currentUserId}`);
+};
+export const updateProfile = (userId: number, data: UpdateProfileDto) => apiClient.put(`/Profile/${userId}`, data);
+export const deleteProfile = (userId: number) => apiClient.delete(`/Profile/${userId}`);
 
 export default apiClient;

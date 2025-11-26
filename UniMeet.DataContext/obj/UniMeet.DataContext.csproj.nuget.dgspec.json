@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Unity Projects\\UniMeet\\UniMeet.DataContext\\UniMeet.DataContext.csproj": {}
+    "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\UniMeet.DataContext.csproj": {}
   },
   "projects": {
-    "D:\\Unity Projects\\UniMeet\\UniMeet.DataContext\\UniMeet.DataContext.csproj": {
+    "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\UniMeet.DataContext.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Unity Projects\\UniMeet\\UniMeet.DataContext\\UniMeet.DataContext.csproj",
+        "projectUniqueName": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\UniMeet.DataContext.csproj",
         "projectName": "UniMeet.DataContext",
-        "projectPath": "D:\\Unity Projects\\UniMeet\\UniMeet.DataContext\\UniMeet.DataContext.csproj",
-        "packagesPath": "C:\\Users\\folde\\.nuget\\packages\\",
-        "outputPath": "D:\\Unity Projects\\UniMeet\\UniMeet.DataContext\\obj\\",
+        "projectPath": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\UniMeet.DataContext.csproj",
+        "packagesPath": "C:\\Users\\retki\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\VS SharedSDK\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\folde\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\retki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,7 +44,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -95,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

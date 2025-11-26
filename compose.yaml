@@ -1,31 +1,62 @@
 services:
-  csharp-UniMeet:
-    build:
-      context: ./UniMeet
-      dockerfile: ../UniMeetDockerfile
-    restart: unless-stopped
-    # env_file: ./UniMeet/.env  # Uncomment if .env file exists
+  # SQL Server adatbázis
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: unimeet-sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=UniMeet123!
+      - MSSQL_PID=Developer
     ports:
-      - "80:80"  # ASP.NET Core default port
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
     networks:
-      - unimeet-net
-    depends_on:
-      - typescript-UniMeet.Frontend
-    # Add database service here if required by backend (see README or source)
+      - unimeet-network
+    healthcheck:
+      test: /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P UniMeet123! -Q "SELECT 1" -C
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
-  typescript-UniMeet.Frontend:
+  # Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: UniMeet/Dockerfile
+    container_name: unimeet-backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:5186
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=UniMeetDb;User Id=sa;Password=UniMeet123!;TrustServerCertificate=True;
+      - ASPNETCORE_Kestrel__Limits__MaxRequestBodySize=52428800
+    ports:
+      - "5186:5186"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    networks:
+      - unimeet-network
+
+  # Frontend React App
+  frontend:
     build:
       context: ./UniMeet.Frontend
-      dockerfile: ../UniMeet.FrontendDockerfile
-    restart: unless-stopped
-    init: true
-    # env_file: ./UniMeet.Frontend/.env  # Uncomment if .env file exists
+      dockerfile: Dockerfile
+    container_name: unimeet-frontend
     ports:
-      - "5173:5173"  # Vite default port for frontend dev server
+      - "5173:5173"
+    depends_on:
+      - backend
     networks:
-      - unimeet-net
-    # If frontend needs to talk to backend, ensure both are on the same network
+      - unimeet-network
+    environment:
+      - VITE_API_URL=http://localhost:5186/api
+
+volumes:
+  sqlserver-data:
 
 networks:
-  unimeet-net:
+  unimeet-network:
     driver: bridge

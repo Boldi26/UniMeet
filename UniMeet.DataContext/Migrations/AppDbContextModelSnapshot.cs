@@ -74,6 +74,68 @@ namespace UniMeet.DataContext.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("UniMeet.DataContext.Entities.Group", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreatorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPrivate")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("UniMeet.DataContext.Entities.GroupMember", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateJoined")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("GroupMembers");
+                });
+
             modelBuilder.Entity("UniMeet.DataContext.Entities.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -92,6 +154,12 @@ namespace UniMeet.DataContext.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("InterestEnabled")
                         .HasColumnType("bit");
 
@@ -100,6 +168,8 @@ namespace UniMeet.DataContext.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GroupId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Posts");
@@ -107,21 +177,16 @@ namespace UniMeet.DataContext.Migrations
 
             modelBuilder.Entity("UniMeet.DataContext.Entities.PostInterest", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("PostId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
-                    b.HasIndex("PostId");
+                    b.HasKey("PostId", "UserId");
 
                     b.HasIndex("UserId");
 
@@ -136,8 +201,20 @@ namespace UniMeet.DataContext.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Faculty")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Major")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("PasswordHash")
@@ -147,6 +224,9 @@ namespace UniMeet.DataContext.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ProfileImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -161,8 +241,7 @@ namespace UniMeet.DataContext.Migrations
                 {
                     b.HasOne("UniMeet.DataContext.Entities.Comment", "ParentComment")
                         .WithMany("Replies")
-                        .HasForeignKey("ParentCommentId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("ParentCommentId");
 
                     b.HasOne("UniMeet.DataContext.Entities.Post", "Post")
                         .WithMany("Comments")
@@ -171,9 +250,9 @@ namespace UniMeet.DataContext.Migrations
                         .IsRequired();
 
                     b.HasOne("UniMeet.DataContext.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("ParentComment");
@@ -183,13 +262,38 @@ namespace UniMeet.DataContext.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("UniMeet.DataContext.Entities.Post", b =>
+            modelBuilder.Entity("UniMeet.DataContext.Entities.GroupMember", b =>
                 {
+                    b.HasOne("UniMeet.DataContext.Entities.Group", "Group")
+                        .WithMany("Members")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("UniMeet.DataContext.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("GroupMemberships")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Group");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("UniMeet.DataContext.Entities.Post", b =>
+                {
+                    b.HasOne("UniMeet.DataContext.Entities.Group", "Group")
+                        .WithMany("Posts")
+                        .HasForeignKey("GroupId");
+
+                    b.HasOne("UniMeet.DataContext.Entities.User", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
 
                     b.Navigation("User");
                 });
@@ -203,9 +307,9 @@ namespace UniMeet.DataContext.Migrations
                         .IsRequired();
 
                     b.HasOne("UniMeet.DataContext.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Interests")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Post");
@@ -218,11 +322,29 @@ namespace UniMeet.DataContext.Migrations
                     b.Navigation("Replies");
                 });
 
+            modelBuilder.Entity("UniMeet.DataContext.Entities.Group", b =>
+                {
+                    b.Navigation("Members");
+
+                    b.Navigation("Posts");
+                });
+
             modelBuilder.Entity("UniMeet.DataContext.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
 
                     b.Navigation("Interests");
+                });
+
+            modelBuilder.Entity("UniMeet.DataContext.Entities.User", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("GroupMemberships");
+
+                    b.Navigation("Interests");
+
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }
