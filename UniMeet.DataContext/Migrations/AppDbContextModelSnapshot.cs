@@ -106,6 +106,38 @@ namespace UniMeet.DataContext.Migrations
                     b.ToTable("Groups");
                 });
 
+            modelBuilder.Entity("UniMeet.DataContext.Entities.GroupJoinRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("DateHandled")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateRequested")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("GroupJoinRequests");
+                });
+
             modelBuilder.Entity("UniMeet.DataContext.Entities.GroupMember", b =>
                 {
                     b.Property<int>("Id")
@@ -193,6 +225,63 @@ namespace UniMeet.DataContext.Migrations
                     b.ToTable("PostInterests");
                 });
 
+            modelBuilder.Entity("UniMeet.DataContext.Entities.Report", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdminNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateResolved")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ReportedCommentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReportedGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReportedPostId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReportedUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReporterUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReportedCommentId");
+
+                    b.HasIndex("ReportedGroupId");
+
+                    b.HasIndex("ReportedPostId");
+
+                    b.HasIndex("ReportedUserId");
+
+                    b.HasIndex("ReporterUserId");
+
+                    b.ToTable("Reports");
+                });
+
             modelBuilder.Entity("UniMeet.DataContext.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -200,6 +289,12 @@ namespace UniMeet.DataContext.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BanReason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("BannedUntil")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
@@ -213,6 +308,12 @@ namespace UniMeet.DataContext.Migrations
 
                     b.Property<string>("Faculty")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsBanned")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Major")
                         .HasColumnType("nvarchar(max)");
@@ -258,6 +359,25 @@ namespace UniMeet.DataContext.Migrations
                     b.Navigation("ParentComment");
 
                     b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("UniMeet.DataContext.Entities.GroupJoinRequest", b =>
+                {
+                    b.HasOne("UniMeet.DataContext.Entities.Group", "Group")
+                        .WithMany("JoinRequests")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UniMeet.DataContext.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Group");
 
                     b.Navigation("User");
                 });
@@ -317,6 +437,45 @@ namespace UniMeet.DataContext.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("UniMeet.DataContext.Entities.Report", b =>
+                {
+                    b.HasOne("UniMeet.DataContext.Entities.Comment", "ReportedComment")
+                        .WithMany()
+                        .HasForeignKey("ReportedCommentId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("UniMeet.DataContext.Entities.Group", "ReportedGroup")
+                        .WithMany()
+                        .HasForeignKey("ReportedGroupId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("UniMeet.DataContext.Entities.Post", "ReportedPost")
+                        .WithMany()
+                        .HasForeignKey("ReportedPostId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("UniMeet.DataContext.Entities.User", "ReportedUser")
+                        .WithMany("ReceivedReports")
+                        .HasForeignKey("ReportedUserId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("UniMeet.DataContext.Entities.User", "ReporterUser")
+                        .WithMany("SentReports")
+                        .HasForeignKey("ReporterUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("ReportedComment");
+
+                    b.Navigation("ReportedGroup");
+
+                    b.Navigation("ReportedPost");
+
+                    b.Navigation("ReportedUser");
+
+                    b.Navigation("ReporterUser");
+                });
+
             modelBuilder.Entity("UniMeet.DataContext.Entities.Comment", b =>
                 {
                     b.Navigation("Replies");
@@ -324,6 +483,8 @@ namespace UniMeet.DataContext.Migrations
 
             modelBuilder.Entity("UniMeet.DataContext.Entities.Group", b =>
                 {
+                    b.Navigation("JoinRequests");
+
                     b.Navigation("Members");
 
                     b.Navigation("Posts");
@@ -345,6 +506,10 @@ namespace UniMeet.DataContext.Migrations
                     b.Navigation("Interests");
 
                     b.Navigation("Posts");
+
+                    b.Navigation("ReceivedReports");
+
+                    b.Navigation("SentReports");
                 });
 #pragma warning restore 612, 618
         }

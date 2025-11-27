@@ -1,0 +1,60 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace UniMeet.DataContext.Migrations
+{
+    /// <inheritdoc />
+    public partial class AddGroupJoinRequests : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "GroupJoinRequests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    DateRequested = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateHandled = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GroupJoinRequests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GroupJoinRequests_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GroupJoinRequests_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GroupJoinRequests_GroupId",
+                table: "GroupJoinRequests",
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GroupJoinRequests_UserId",
+                table: "GroupJoinRequests",
+                column: "UserId");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "GroupJoinRequests");
+        }
+    }
+}

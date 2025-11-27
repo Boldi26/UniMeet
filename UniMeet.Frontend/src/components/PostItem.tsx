@@ -6,9 +6,10 @@ interface PostItemProps {
     post: PostDetailResponse;
     onInterest: (postId: number) => void;
     onOpenComments?: (postId: number) => void;
+    onReport?: (postId: number) => void;
 }
 
-const PostItem: React.FC<PostItemProps> = ({ post, onInterest, onOpenComments }) => {
+const PostItem: React.FC<PostItemProps> = ({ post, onInterest, onOpenComments, onReport }) => {
     const navigate = useNavigate();
     
     // Dátum formázása
@@ -102,6 +103,17 @@ const PostItem: React.FC<PostItemProps> = ({ post, onInterest, onOpenComments })
                     <span style={styles.disabledAction}>
                         🔒 Kommentek tiltva
                     </span>
+                )}
+
+                {/* Report gomb */}
+                {onReport && (
+                    <button 
+                        onClick={() => onReport(post.postId)}
+                        style={{ ...styles.actionButton, marginLeft: 'auto', color: '#ff6b6b' }}
+                        title="Poszt jelentése"
+                    >
+                        🚨 Jelentés
+                    </button>
                 )}
             </div>
         </div>

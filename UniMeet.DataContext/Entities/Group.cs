@@ -19,5 +19,6 @@ namespace UniMeet.DataContext.Entities
 
         public List<GroupMember> Members { get; set; } = new();
         public List<Post> Posts { get; set; } = new();
+        public List<GroupJoinRequest> JoinRequests { get; set; } = new();
     }
 }

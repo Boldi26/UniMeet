@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { createPost, getFeed, getAllGroups, addInterest, deleteInterest, type GroupSummaryDto } from '../services/apiService';
 import type { PostDetailResponse } from '../services/apiService';
 import PostItem from './PostItem';
+import ReportModal from './ReportModal';
 
 function Feed() {
-    const { user, logout } = useAuth();
+    const { user, logout, isAdmin } = useAuth();
     const navigate = useNavigate();
     
     // State-ek
@@ -14,6 +15,10 @@ function Feed() {
     const [userGroups, setUserGroups] = useState<GroupSummaryDto[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    
+    // Report modal state
+    const [reportModalOpen, setReportModalOpen] = useState(false);
+    const [reportTarget, setReportTarget] = useState<{ type: 'Post' | 'Comment' | 'Group' | 'User'; id: number } | null>(null);
     
     // Új post form state
     const [showCreatePost, setShowCreatePost] = useState(false);
@@ -174,6 +179,21 @@ function Feed() {
                     >
                         👤 Profil
                     </button>
+                    {isAdmin && (
+                        <button 
+                            onClick={() => navigate('/admin')} 
+                            style={{ 
+                                padding: '8px 16px', 
+                                cursor: 'pointer',
+                                backgroundColor: '#ff4757',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '4px'
+                            }}
+                        >
+                            🛡️ Admin
+                        </button>
+                    )}
                     <span style={{ marginLeft: '10px', color: '#ccc' }}>
                         Szia, <strong style={{ color: '#646cff' }}>{user?.username}</strong>!
                     </span>
@@ -357,9 +377,27 @@ function Feed() {
                         post={post} 
                         onInterest={handleInterest}
                         onOpenComments={(id) => navigate(`/post/${id}`)}
+                        onReport={(postId) => {
+                            setReportTarget({ type: 'Post', id: postId });
+                            setReportModalOpen(true);
+                        }}
                     />
                 ))}
             </div>
+
+            {/* Report Modal */}
+            {reportModalOpen && reportTarget && user && (
+                <ReportModal
+                    isOpen={reportModalOpen}
+                    onClose={() => {
+                        setReportModalOpen(false);
+                        setReportTarget(null);
+                    }}
+                    targetType={reportTarget.type}
+                    targetId={reportTarget.id}
+                    userId={user.id}
+                />
+            )}
         </div>
     );
 }

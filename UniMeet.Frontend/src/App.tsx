@@ -6,6 +6,7 @@ import Feed from './components/Feed';
 import PostDetail from './components/PostDetail';
 import Groups from './components/Groups';
 import UserProfile from './components/UserProfile';
+import AdminPanel from './components/AdminPanel';
 
 // Protected Route wrapper
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -13,6 +14,21 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
+  }
+  
+  return <>{children}</>;
+}
+
+// Admin Route wrapper
+function AdminRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated, isAdmin } = useAuth();
+  
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  if (!isAdmin) {
+    return <Navigate to="/feed" replace />;
   }
   
   return <>{children}</>;
@@ -74,6 +90,13 @@ function App() {
               <ProtectedRoute>
                 <UserProfile />
               </ProtectedRoute>
+            } />
+
+            {/* Admin panel */}
+            <Route path="/admin" element={
+              <AdminRoute>
+                <AdminPanel />
+              </AdminRoute>
             } />
 
             {/* Default redirect */}

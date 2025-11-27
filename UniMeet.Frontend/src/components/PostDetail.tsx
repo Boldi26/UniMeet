@@ -9,6 +9,7 @@ import {
     deletePost,
     deleteComment 
 } from '../services/apiService';
+import ReportModal from './ReportModal';
 
 interface Comment {
     id: number;
@@ -45,6 +46,10 @@ function PostDetail() {
     const [newComment, setNewComment] = useState('');
     const [replyTo, setReplyTo] = useState<number | null>(null);
     const [isInterested, setIsInterested] = useState(false);
+
+    // Report modal state
+    const [reportModalOpen, setReportModalOpen] = useState(false);
+    const [reportTarget, setReportTarget] = useState<{ type: 'Post' | 'Comment'; id: number } | null>(null);
 
     useEffect(() => {
         loadPost();
@@ -150,6 +155,20 @@ function PostDetail() {
                                 Törlés
                             </button>
                         )}
+                        {/* Report gomb kommenthez */}
+                        {user?.username !== comment.username && (
+                            <button 
+                                onClick={() => {
+                                    setReportTarget({ type: 'Comment', id: comment.id });
+                                    setReportModalOpen(true);
+                                }} 
+                                className="btn-link"
+                                style={{ color: '#ff6b6b' }}
+                                title="Komment jelentése"
+                            >
+                                🚨
+                            </button>
+                        )}
                     </div>
                 </div>
                 <p className="comment-content">{comment.content}</p>
@@ -207,6 +226,19 @@ function PostDetail() {
                     {user?.username === post.authorUsername && (
                         <button onClick={handleDeletePost} className="btn-danger">
                             Törlés
+                        </button>
+                    )}
+                    {user?.username !== post.authorUsername && (
+                        <button 
+                            onClick={() => {
+                                setReportTarget({ type: 'Post', id: post.postId });
+                                setReportModalOpen(true);
+                            }} 
+                            className="btn-danger"
+                            style={{ backgroundColor: '#ff6b6b' }}
+                            title="Poszt jelentése"
+                        >
+                            🚨 Jelentés
                         </button>
                     )}
                 </div>
@@ -291,6 +323,20 @@ function PostDetail() {
                     </div>
                 </div>
             </div>
+
+            {/* Report Modal */}
+            {reportModalOpen && reportTarget && user && (
+                <ReportModal
+                    isOpen={reportModalOpen}
+                    onClose={() => {
+                        setReportModalOpen(false);
+                        setReportTarget(null);
+                    }}
+                    targetType={reportTarget.type}
+                    targetId={reportTarget.id}
+                    userId={user.id}
+                />
+            )}
         </div>
     );
 }

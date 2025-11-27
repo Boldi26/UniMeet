@@ -512,4 +512,3 @@ C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet\obj\Debug\net9.0\ref
 C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet\obj\Debug\net9.0\UniMeet.pdb
 C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet\obj\Debug\net9.0\UniMeet.genruntimeconfig.cache
 C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet\obj\Debug\net9.0\ref\UniMeet.dll
-C:\Users\retki\OneDrive\Dokumentumok\GitHub\UniMeet\UniMeet\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

@@ -43,7 +43,7 @@ namespace UniMeet.Controllers
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            return Ok(new { user.Id, user.Email, user.Username });
+            return Ok(new { user.Id, user.Email, user.Username, user.IsAdmin });
         }
 
 
@@ -57,7 +57,55 @@ namespace UniMeet.Controllers
             if (!PasswordHelper.VerifyPasswordHash(dto.Password, user.PasswordHash, user.PasswordSalt))
                 return Unauthorized("Invalid credentials.");
 
-            return Ok(new { user.Id, user.Username });
+            // Ban ellenőrzés
+            if (user.IsBanned)
+            {
+                // Ha ideiglenes ban és lejárt, feloldás
+                if (user.BannedUntil.HasValue && user.BannedUntil.Value < DateTime.UtcNow)
+                {
+                    user.IsBanned = false;
+                    user.BanReason = null;
+                    user.BannedUntil = null;
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    var banMessage = user.BannedUntil.HasValue
+                        ? $"A fiókod fel van függesztve {user.BannedUntil.Value:yyyy.MM.dd}-ig. Indok: {user.BanReason}"
+                        : $"A fiókod véglegesen fel van függesztve. Indok: {user.BanReason}";
+                    return Unauthorized(banMessage);
+                }
+            }
+
+            return Ok(new { user.Id, user.Username, user.IsAdmin });
+        }
+
+        // Admin user létrehozása/inicializálása
+        [HttpPost("init-admin")]
+        public async Task<IActionResult> InitAdmin()
+        {
+            // Ellenőrizzük, hogy létezik-e már az admin
+            var existingAdmin = await _context.Users.FirstOrDefaultAsync(u => u.Username == "UniMeetAdmin");
+            if (existingAdmin != null)
+            {
+                return Ok(new { message = "Admin user már létezik.", id = existingAdmin.Id });
+            }
+
+            PasswordHelper.CreatePasswordHash("root", out var hash, out var salt);
+
+            var admin = new User
+            {
+                Email = "admin@unimeet.hu",
+                Username = "UniMeetAdmin",
+                PasswordHash = hash,
+                PasswordSalt = salt,
+                IsAdmin = true
+            };
+
+            _context.Users.Add(admin);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Admin user létrehozva.", id = admin.Id, username = admin.Username });
         }
 
         [HttpDelete("{id}")]

@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet\\controllers\\groupscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|solutionrelative:controllers\\groupscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet\\unimeet.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|solutionrelative:unimeet.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|solutionrelative:controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{031E80C8-E2E6-477C-8060-2852A3764542}|..\\UniMeet.DataContext\\UniMeet.DataContext.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet.datacontext\\dtos\\groupsummarydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -54,14 +66,6 @@
       "AbsoluteMoniker": "D:0:0:{031E80C8-E2E6-477C-8060-2852A3764542}|..\\UniMeet.DataContext\\UniMeet.DataContext.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet.datacontext\\dtos\\updateprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet\\controllers\\groupscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|solutionrelative:controllers\\groupscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E0B2683-6D42-439A-AA24-CD98FDAAABBD}|UniMeet.csproj|solutionrelative:controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{031E80C8-E2E6-477C-8060-2852A3764542}|..\\UniMeet.DataContext\\UniMeet.DataContext.csproj|c:\\users\\retki\\onedrive\\dokumentumok\\github\\unimeet\\unimeet.datacontext\\dtos\\creategroupdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -79,7 +83,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -87,69 +91,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PostInterest.cs",
-              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\PostInterest.cs",
-              "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Entities\\PostInterest.cs",
-              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\PostInterest.cs",
-              "RelativeToolTip": "..\\UniMeet.DataContext\\Entities\\PostInterest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T23:05:52.592Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GroupSummaryDto.cs",
-              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\GroupSummaryDto.cs",
-              "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Dtos\\GroupSummaryDto.cs",
-              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\GroupSummaryDto.cs",
-              "RelativeToolTip": "..\\UniMeet.DataContext\\Dtos\\GroupSummaryDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T22:55:01.137Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Post.cs",
-              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\Post.cs",
-              "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Entities\\Post.cs",
-              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\Post.cs",
-              "RelativeToolTip": "..\\UniMeet.DataContext\\Entities\\Post.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAwwBkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T22:47:54.299Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAgwDQAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-04T14:15:47.862Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "InterestDto.cs",
-              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\InterestDto.cs",
-              "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Dtos\\InterestDto.cs",
-              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\InterestDto.cs",
-              "RelativeToolTip": "..\\UniMeet.DataContext\\Dtos\\InterestDto.cs",
+              "DocumentIndex": 0,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Controllers\\AdminController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T23:05:56.233Z"
+              "WhenOpened": "2025-11-27T17:28:08.682Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "Group.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\Group.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Entities\\Group.cs",
@@ -161,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "CommentResponse.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\CommentResponse.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Entities\\CommentResponse.cs",
@@ -173,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "CreatePostDto.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\CreatePostDto.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Dtos\\CreatePostDto.cs",
@@ -185,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\User.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Entities\\User.cs",
@@ -197,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "Comment.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\Comment.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Entities\\Comment.cs",
@@ -209,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Context\\AppDbContext.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Context\\AppDbContext.cs",
@@ -221,20 +176,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAMwDcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAAMwDEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-04T13:30:45.132Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-04T13:30:45.132Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
+              "Title": "PostInterest.cs",
+              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\PostInterest.cs",
+              "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Entities\\PostInterest.cs",
+              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\PostInterest.cs",
+              "RelativeToolTip": "..\\UniMeet.DataContext\\Entities\\PostInterest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T23:05:52.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "UniMeet.sql ",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\UniMeet.sql",
               "RelativeDocumentMoniker": "UniMeet.sql",
@@ -246,7 +212,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "GroupsController.cs",
+              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\GroupsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GroupsController.cs",
+              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\GroupsController.cs",
+              "RelativeToolTip": "Controllers\\GroupsController.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAMwD4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T22:57:01.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Post.cs",
+              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\Post.cs",
+              "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Entities\\Post.cs",
+              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\Post.cs",
+              "RelativeToolTip": "..\\UniMeet.DataContext\\Entities\\Post.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAwwBkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T22:47:54.299Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PostController.cs",
+              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\PostController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PostController.cs",
+              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\PostController.cs",
+              "RelativeToolTip": "Controllers\\PostController.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T14:11:54.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "InterestDto.cs",
+              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\InterestDto.cs",
+              "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Dtos\\InterestDto.cs",
+              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\InterestDto.cs",
+              "RelativeToolTip": "..\\UniMeet.DataContext\\Dtos\\InterestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T23:05:56.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAgwDQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T14:15:47.862Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GroupSummaryDto.cs",
+              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\GroupSummaryDto.cs",
+              "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Dtos\\GroupSummaryDto.cs",
+              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\GroupSummaryDto.cs",
+              "RelativeToolTip": "..\\UniMeet.DataContext\\Dtos\\GroupSummaryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T22:55:01.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "20251124233607_migr\u00E9n.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Migrations\\20251124233607_migr\u00E9n.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Migrations\\20251124233607_migr\u00E9n.cs",
@@ -258,7 +297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "CreateCommentDto.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\CreateCommentDto.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Dtos\\CreateCommentDto.cs",
@@ -270,19 +309,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "GroupsController.cs",
-              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\GroupsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\GroupsController.cs",
-              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\GroupsController.cs",
-              "RelativeToolTip": "Controllers\\GroupsController.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAowFgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T22:57:01.434Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "UpdateProfileDto.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\UpdateProfileDto.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Dtos\\UpdateProfileDto.cs",
@@ -294,19 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "PostController.cs",
-              "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\PostController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PostController.cs",
-              "ToolTip": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet\\Controllers\\PostController.cs",
-              "RelativeToolTip": "Controllers\\PostController.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAgwE0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-04T14:11:54.094Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "CreateGroupDto.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Dtos\\CreateGroupDto.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Dtos\\CreateGroupDto.cs",
@@ -318,7 +333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "GroupMember.cs",
               "DocumentMoniker": "C:\\Users\\retki\\OneDrive\\Dokumentumok\\GitHub\\UniMeet\\UniMeet.DataContext\\Entities\\GroupMember.cs",
               "RelativeDocumentMoniker": "..\\UniMeet.DataContext\\Entities\\GroupMember.cs",

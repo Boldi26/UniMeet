@@ -19,7 +19,11 @@ function Login() {
 
         try {
             const response = await loginUser({ username, password });
-            login({ id: response.data.id, username: response.data.username });
+            login({ 
+                id: response.data.id, 
+                username: response.data.username,
+                isAdmin: response.data.isAdmin || false
+            });
             navigate('/feed');
         } catch (err: any) {
             const errorMsg = err.response?.data || 'Kommunikációs hiba a szerverrel';

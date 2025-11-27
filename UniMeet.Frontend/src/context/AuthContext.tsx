@@ -5,13 +5,15 @@ interface User {
     id: number;
     username: string;
     email?: string;
+    isAdmin?: boolean;
 }
 
 interface AuthContextType {
     user: User | null;
-    login: (userData: User, token: string) => void;
+    login: (userData: User, token?: string) => void;
     logout: () => void;
     isAuthenticated: boolean;
+    isAdmin: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -35,10 +37,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }, []);
 
-    const login = (userData: User, token: string) => {
+    const login = (userData: User, token?: string) => {
         setUser(userData);
         localStorage.setItem('user', JSON.stringify(userData));
-        localStorage.setItem('token', token);
+        if (token) {
+            localStorage.setItem('token', token);
+        }
     };
 
     const logout = () => {
@@ -47,8 +51,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         localStorage.removeItem('token');
     };
 
+    const isAdmin = user?.isAdmin ?? false;
+
     return (
-        <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+        <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user, isAdmin }}>
             {children}
         </AuthContext.Provider>
     );
